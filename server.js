@@ -7,8 +7,8 @@ var mongoose = require("mongoose");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-mongoose.connect("mongodb://localhost:27017/Northwind2", function (err, database) {
+// mongodb+srv://tk9292:a1b2c3@cluster0.tvfxm.mongodb.net/balink?retryWrites=true&w=majority
+mongoose.connect("mongodb+srv://tk9292:a1b2c3@cluster0.tvfxm.mongodb.net/balink?retryWrites=true&w=majority", function (err, database) {
     if (err) {
         console.log("Error: " + err);
     }
@@ -41,6 +41,19 @@ app.post("/customers", function (request, response) {
         else {
             response.status(201); // 201 = Created
             response.send(customer);
+        }
+    });
+});
+
+app.get("/customers", function (request, response) {
+    Customer.find({}, function (err, customers) {
+        if (err) {
+            console.log("Error: " + err);
+            response.status(500);
+            response.send(err);
+        }
+        else {
+            response.send(customers); // Default Status = 200
         }
     });
 });

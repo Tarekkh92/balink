@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   // firstFormGroup: FormGroup | undefined;
   // secondFormGroup: FormGroup | undefined;
   public customer: any = {};
+
   
    constructor(private _formBuilder: FormBuilder,private ps:CustomersService) {}
   
@@ -33,7 +34,15 @@ export class AppComponent implements OnInit {
 }
 public submitForm() {
    
-  console.log('sending data: ', this.customer.firstName);
+  console.log('firstname: ', this.customer.firstName);
+  console.log('lastname data: ', this.customer.lastName);
+  console.log('title data: ', this.customer.title);
+  console.log('title data: ', this.customer.country);
+  console.log('title data: ', this.customer.city);
+  console.log('title data: ', this.customer.street);
+  console.log('title data: ', this.customer.email);
+  console.log('title data: ', this.customer.phone);
+  console.log('title data: ', this.customer.option);
   this.ps.addCustomer(this.customer).subscribe(res => {
   
     this.customer = {};
