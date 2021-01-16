@@ -1,17 +1,17 @@
-<h1>Balink HW</h1>
+<h1>Balink </h1>
   
 <mat-horizontal-stepper>
    
   <mat-step label="Step 1">
     <div class="personal">
         <label for="firstName">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your Name..">
-
+        <input type="text"  [(ngModel)]="customer.firstName"  id="fname" name="firstname" placeholder="Your Name.." >
+      <!-- [(ngModel)]="customer.firstName" -->
         <label for="lastName">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your Last Name..">
+        <input type="text" id="lname" [(ngModel)]="customer.lastName" name="lastname" placeholder="Your Last Name.." >
 
         <label for="title">Title </label>
-        <input type="text" id="fname" name="firstname" placeholder="Your Title.. ">
+        <input type="text"  [(ngModel)]="customer.title"id="title" name="title" placeholder="Your Title.. " >
     </div>
   
     <div class="center">
@@ -24,18 +24,18 @@
   <mat-step label="Step 2">
     <div class="address">
       <label for="CountryName">Country Name</label>
-      <input type="text" id="CountryName" name="CountryName" placeholder="Your Country Name ..">
+      <input type="text" id="CountryName" [(ngModel)]="customer.country" name="CountryName" placeholder="Your Country Name ..">
 
       <label for="cityName">City Name</label>
-      <input type="text" id="cityName" name="cityName" placeholder="Your City Name..">
+      <input type="text" id="cityName" [(ngModel)]="customer.city" name="cityName" placeholder="Your City Name..">
 
       <label for="street">Street </label>
-      <input type="text" id="street" name="street" placeholder="Your Street.. ">
+      <input type="text" [(ngModel)]="customer.street" id="street" name="street" placeholder="Your Street.. ">
   </div>
 
   <div class="center">
   
-    <button mat-button matStepperPrevious class="back"> < Back</button>
+    <button mat-button matStepperPrevious class="back">  Back</button>
     <button mat-button matStepperNext class="next">Next</button>
    
 
@@ -45,19 +45,19 @@
   <mat-step label="Step 3">
     <div class="address">
       <label for="email">Email </label>
-      <input type="text" id="Email" name="Email" placeholder="Your Email ..">
+      <input type="text"  [(ngModel)]="customer.email" id="Email" name="Email" placeholder="Your Email ..">
   
       <label for="phone">Phone </label>
-      <input type="text" id="phone" name="Phone" placeholder="Your Phone ..">
+      <input type="text"  [(ngModel)]="customer.phone" id="phone" name="Phone" placeholder="Your Phone ..">
 
       <label class="container">Option
-        <input type="checkbox">
+        <input type="checkbox" [(ngModel)]="customer.option">
         <span class="checkmark"></span>
       </label>
 
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit"  (click)="submitForm()">
       <div class="center">
-        <button mat-button matStepperPrevious class="back"> < Back</button>
+        <button mat-button matStepperPrevious class="back"> Back</button>
       </div>
   </div>
   </mat-step>
