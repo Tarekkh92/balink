@@ -59,7 +59,7 @@ public firstForm(){
   // if(!this.customer.title){
   //   this.msg_title = " Title  is missing ! ";
   // }
-  
+
   if(this.customer.firstName!="" && this.customer.lastName !="" && this.customer != ""){
    return true;
 
@@ -115,9 +115,12 @@ else{
   this.ps.addCustomer(this.customer).subscribe(res => {
   
     this.customer = {};
+    this.msgError = '';
     // console.log('res from customer: ', res);
     this.msgSuccess = 'Success Submission , Thank you For the Time. ';
-
+    setTimeout(()=>{
+      window.location.href='/';
+    },2000)
 
   }, err => {
     console.log('error from customer: ', err)
