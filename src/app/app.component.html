@@ -6,18 +6,22 @@
     <div class="personal">
         <label for="firstName">First Name</label>
         <input type="text"  [(ngModel)]="customer.firstName"  id="fname" name="firstname" placeholder="Your Name.." >
-      <!-- [(ngModel)]="customer.firstName" -->
+        <p class="msg_firstName">{{ msg_firstName }}</p>
+     
         <label for="lastName">Last Name</label>
         <input type="text" id="lname" [(ngModel)]="customer.lastName" name="lastname" placeholder="Your Last Name.." >
-
+        <p class="msg_lastName">{{ msg_lastName }}</p>
         <label for="title">Title </label>
         <input type="text"  [(ngModel)]="customer.title"id="title" name="title" placeholder="Your Title.. " >
+        <p class="msg_title">{{ msg_title }}</p>
     </div>
   
     <div class="center">
-      <button mat-button matStepperNext class="next">Next</button>
+      <button mat-button matStepperNext class="next"  >Next</button>
     </div>
-  
+  <!-- [disabled]="firstForm()" 
+    (click)="firstForm()"
+  -->
 
   </mat-step>
    
@@ -25,12 +29,13 @@
     <div class="address">
       <label for="CountryName">Country Name</label>
       <input type="text" id="CountryName" [(ngModel)]="customer.country" name="CountryName" placeholder="Your Country Name ..">
-
+      <p class="msg_firstName">{{ msg_country }}</p>
       <label for="cityName">City Name</label>
       <input type="text" id="cityName" [(ngModel)]="customer.city" name="cityName" placeholder="Your City Name..">
-
+      <p class="msg_firstName">{{ msg_city }}</p>
       <label for="street">Street </label>
       <input type="text" [(ngModel)]="customer.street" id="street" name="street" placeholder="Your Street.. ">
+      <p class="msg_firstName">{{ msg_street }}</p>
   </div>
 
   <div class="center">
@@ -46,20 +51,29 @@
     <div class="address">
       <label for="email">Email </label>
       <input type="text"  [(ngModel)]="customer.email" id="Email" name="Email" placeholder="Your Email ..">
-  
+      <p class="msg_firstName">{{ msg_email }}</p>
       <label for="phone">Phone </label>
       <input type="text"  [(ngModel)]="customer.phone" id="phone" name="Phone" placeholder="Your Phone ..">
-
+      <p class="msg_firstName">{{ msg_phone }}</p>
       <label class="container">Option
         <input type="checkbox" [(ngModel)]="customer.option">
         <span class="checkmark"></span>
       </label>
 
       <input type="submit" value="Submit"  (click)="submitForm()">
+     
+    
       <div class="center">
         <button mat-button matStepperPrevious class="back"> Back</button>
       </div>
-  </div>
+
+      <p class="msg_success">{{ msgSuccess }}</p>
+      <p class="msg_error">{{ msgError }}</p>
+    
+    </div>
+
+    
+   
   </mat-step>
     
 </mat-horizontal-stepper>

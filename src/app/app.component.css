@@ -103,3 +103,17 @@ background-color: lightgray;
   /* height: 200px; */
   /* border: 3px solid lightblue;  */
 }
+.msg_success{
+  color: #45a049;
+  font-size: xx-large;
+font-weight: bold;}
+.msg_error{
+  color: red;
+  font-size: xx-large;
+font-weight: bold;}
+.msg_firstName,.msg_lastName,.msg_title{
+  color: red;
+  font-size: xx-large;
+font-weight: bold;
+
+}
