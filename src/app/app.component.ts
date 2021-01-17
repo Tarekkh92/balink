@@ -51,17 +51,18 @@ export class AppComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       email: ['', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")] ],
-      phone: ['', Validators.required],
+      phone: ['', [Validators.required,Validators.pattern("^((\\+972?)|0+)?[0-9]{9}$")]],
       option: ['', Validators.required]
       // "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
       // '^-?[0-9]\\d*(\\.\\d{1,2})?$'
+      //^05[023458]-?[1-9]\d{6}$
     });
   }
 
   ngOnInit() {
     this.initCountries();
     this.ps.getCustomersAsync().subscribe(res => {
-      console.log(res);
+      //console.log(res);
     });
   }
 
@@ -97,7 +98,7 @@ export class AppComponent implements OnInit {
   
     this.cs.getAllCountries().
       subscribe(countries =>{this.countries = countries;
-        console.log(this.countries)
+        //console.log(this.countries)
       
       
       } );
@@ -108,7 +109,7 @@ export class AppComponent implements OnInit {
   }
 
   public submitForm() {
-    console.log(this.thirdFormGroup)
+    //console.log(this.thirdFormGroup)
     this.error = false;
     if (this.firstFormGroup.invalid || this.secondFormGroup.invalid || this.thirdFormGroup.invalid) {
       this.error=true;
@@ -162,7 +163,7 @@ export class AppComponent implements OnInit {
         setTimeout(()=>{
           this.showNotification = false;
         },4000)
-        console.log('error from customer: ', err)
+       // console.log('error from customer: ', err)
         this.msgError = 'Error';
       })
     }

@@ -1,3 +1,5 @@
+
+
 <div class="page">
 <div class="row notifyType" style="color: white; background-color: #171111c9;" *ngIf="showNotification">
   <i [ngClass]="error? 'fa fa-times iconToggle fail' : 'fa fa-check-circle iconToggle success'"></i>
@@ -43,7 +45,7 @@
           placeholder="Your Country Name .." [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }"> -->
           <select   id="CountryName" formControlName="country" name="CountryName" [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }" >
           
-            <option selected disabled >Choose Country...</option>
+            <option selected selected >Choose Country...</option>
             <option *ngFor="let c of countries  ">{{c.name }}</option>
         </select>
           <!-- <option disabled>Select Country</option> -->
