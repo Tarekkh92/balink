@@ -1,80 +1,99 @@
+<div class="row notifyType" style="color: white; background-color: #171111c9;" *ngIf="showNotification">
+  <i [ngClass]="error? 'fa fa-times iconToggle fail' : 'fa fa-check-circle iconToggle success'"></i>
+  <span class="col-eleven tab-full" *ngIf="error"  id="notifyType">Some Error Found.
+  </span>
+  <span class="col-eleven tab-full" *ngIf="!error"  id="notifyType">Success Submission.
+  </span>
+</div>
+<br>
 <h1>Balink </h1>
-  
-<mat-horizontal-stepper>
-   
-  <mat-step label="Step 1">
-    <div class="personal">
+<mat-horizontal-stepper [linear]="isLinear">
+
+  <mat-step label="Step 1" [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <div class="personal">
         <label for="firstName">First Name</label>
-        <input type="text"  [(ngModel)]="customer.firstName"  id="fname" name="firstname" placeholder="Your Name.." >
-        <p class="msg_firstName">{{ msg_firstName }}</p>
-     
+        <input type="text" formControlName="firstName" id="fname" name="firstname" placeholder="Your Name.."
+          [ngClass]="{ 'has-error': isSubmitted && formControls.firstName.errors }">
+        <p *ngIf="isSubmitted && formControls.firstName.errors" class="msg_firstName">First name is missing !</p>
+
         <label for="lastName">Last Name</label>
-        <input type="text" id="lname" [(ngModel)]="customer.lastName" name="lastname" placeholder="Your Last Name.." >
-        <p class="msg_lastName">{{ msg_lastName }}</p>
+        <input type="text" id="lname" formControlName="lastName" name="lastname" placeholder="Your Last Name.."
+          [ngClass]="{ 'has-error': isSubmitted && formControls.lastName.errors }">
+        <p class="msg_lastName" *ngIf="isSubmitted && formControls.lastName.errors">Last name is missing !</p>
         <label for="title">Title </label>
-        <input type="text"  [(ngModel)]="customer.title"id="title" name="title" placeholder="Your Title.. " >
-        <p class="msg_title">{{ msg_title }}</p>
-    </div>
-  
-    <div class="center">
-      <button mat-button matStepperNext class="next"  >Next</button>
-    </div>
-  <!-- [disabled]="firstForm()" 
-    (click)="firstForm()"
-  -->
-
-  </mat-step>
-   
-  <mat-step label="Step 2">
-    <div class="address">
-      <label for="CountryName">Country Name</label>
-      <input type="text" id="CountryName" [(ngModel)]="customer.country" name="CountryName" placeholder="Your Country Name ..">
-      <p class="msg_firstName">{{ msg_country }}</p>
-      <label for="cityName">City Name</label>
-      <input type="text" id="cityName" [(ngModel)]="customer.city" name="cityName" placeholder="Your City Name..">
-      <p class="msg_firstName">{{ msg_city }}</p>
-      <label for="street">Street </label>
-      <input type="text" [(ngModel)]="customer.street" id="street" name="street" placeholder="Your Street.. ">
-      <p class="msg_firstName">{{ msg_street }}</p>
-  </div>
-
-  <div class="center">
-  
-    <button mat-button matStepperPrevious class="back">  Back</button>
-    <button mat-button matStepperNext class="next">Next</button>
-   
-
-  </div>
-  </mat-step>
- 
-  <mat-step label="Step 3">
-    <div class="address">
-      <label for="email">Email </label>
-      <input type="text"  [(ngModel)]="customer.email" id="Email" name="Email" placeholder="Your Email ..">
-      <p class="msg_firstName">{{ msg_email }}</p>
-      <label for="phone">Phone </label>
-      <input type="text"  [(ngModel)]="customer.phone" id="phone" name="Phone" placeholder="Your Phone ..">
-      <p class="msg_firstName">{{ msg_phone }}</p>
-      <label class="container">Option
-        <input type="checkbox" [(ngModel)]="customer.option">
-        <span class="checkmark"></span>
-      </label>
-
-      <input type="submit" value="Submit"  (click)="submitForm()">
-     
-    
-      <div class="center">
-        <button mat-button matStepperPrevious class="back"> Back</button>
+        <input type="text" formControlName="title" id="title" name="title" placeholder="Your Title.. "
+          [ngClass]="{ 'has-error': isSubmitted && formControls.title.errors }">
+        <p *ngIf="isSubmitted && formControls.title.errors" class="msg_title">Title is missing !</p>
       </div>
 
-      <p class="msg_success">{{ msgSuccess }}</p>
-      <p class="msg_error">{{ msgError }}</p>
-    
-    </div>
+      <div class="center">
+        <button mat-button matStepperNext class="next" (click)="isSubmitted=true;">Next</button>
+      </div>
+    </form>
 
-    
-   
   </mat-step>
-    
-</mat-horizontal-stepper>
 
+  <mat-step label="Step 2" [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <div class="address">
+        <label for="CountryName">Country Name</label>
+        <input type="text" id="CountryName" formControlName="country" name="CountryName"
+          placeholder="Your Country Name .." [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }">
+        <p *ngIf="isSubmitted2 && formControls2.country.errors" class="msg_firstName">Country name is missing !</p>
+        <label for="cityName">City Name</label>
+        <input type="text" id="cityName" formControlName="city" name="cityName" placeholder="Your City Name.."
+          [ngClass]="{ 'has-error': isSubmitted2 && formControls2.city.errors }">
+        <p *ngIf="isSubmitted2 && formControls2.city.errors" class="msg_firstName">City name is missing !</p>
+        <label for="street">Street </label>
+        <input type="text" formControlName="street" id="street" name="street" placeholder="Your Street.. "
+          [ngClass]="{ 'has-error': isSubmitted2 && formControls2.street.errors }">
+        <p *ngIf="isSubmitted2 && formControls2.street.errors" class="msg_firstName">Street name is missing !</p>
+      </div>
+
+      <div class="center">
+
+        <button mat-button matStepperPrevious class="back"> Back</button>
+        <button mat-button matStepperNext class="next" (click)="isSubmitted2=true;">Next</button>
+
+
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step label="Step 3" [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <div class="address">
+        <label for="email">Email </label>
+        <input type="text" formControlName="email" id="Email" name="Email" placeholder="Your Email .."
+          [ngClass]="{ 'has-error':isSubmitted3 && formControls3.email.errors }">
+        <p *ngIf="isSubmitted3 && formControls3.email.errors?.required" class="msg_firstName">Email is missing !</p>
+        <p *ngIf="isSubmitted3 && formControls3.email.errors?.pattern" class="msg_firstName">Invalid Email !</p>
+        <label for="phone">Phone </label>
+        <input type="text" formControlName="phone" id="phone" name="Phone" placeholder="Your Phone .."
+          [ngClass]="{ 'has-error': isSubmitted3 && formControls3.phone.errors }">
+        <p *ngIf="isSubmitted3 && formControls3.phone.errors?.required" class="msg_firstName">Phone Number is missing !</p>
+        <p *ngIf="isSubmitted3 && formControls3.phone.errors?.pattern" class="msg_firstName">Invalid Phone Number!</p>
+        <label class="container">Option
+          <input type="checkbox" formControlName="option">
+          <!-- <span class="checkmark"></span> -->
+        </label>
+
+        <input type="submit" value="Submit" (click)="isSubmitted3=true;submitForm()">
+
+
+        <div class="center">
+          <button mat-button matStepperPrevious class="back"> Back</button>
+        </div>
+
+        <!-- <p class="msg_success">{{ msgSuccess }}</p>
+        <p class="msg_error">{{ msgError }}</p> -->
+
+      </div>
+    </form>
+
+
+
+  </mat-step>
+
+</mat-horizontal-stepper>

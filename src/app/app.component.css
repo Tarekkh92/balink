@@ -5,6 +5,9 @@ h1{
 .privatedata,.personal,.address,.contactability{
     text-align: center;
 }
+.has-error{
+	border-color: #F9413A!important
+}
 input[type=text],input[type=checkbox] select {
     width: 100%;
     padding: 12px 20px;
@@ -14,7 +17,7 @@ input[type=text],input[type=checkbox] select {
     border-radius: 4px;
     box-sizing: border-box;
   }
-  
+
   input[type=submit] {
     width: 100%;
     background-color: #4CAF50;
@@ -25,11 +28,11 @@ input[type=text],input[type=checkbox] select {
     border-radius: 4px;
     cursor: pointer;
   }
-  
+
   input[type=submit]:hover {
     background-color: #45a049;
   }
-  
+
   div {
     border-radius: 5px;
     background-color: #f2f2f2;
@@ -38,24 +41,24 @@ input[type=text],input[type=checkbox] select {
   .container:hover input ~ .checkmark {
     background-color: #ccc;
   }
-  
+
   /* When the checkbox is checked, add a blue background */
   .container input:checked ~ .checkmark {
     background-color: #2196F3;
   }
-  
+
   /* Create the checkmark/indicator (hidden when not checked) */
   .checkmark:after {
     content: "";
     position: absolute;
     display: none;
   }
-  
+
   /* Show the checkmark when checked */
   .container input:checked ~ .checkmark:after {
     display: block;
   }
-  
+
   /* Style the checkmark/indicator */
   .container .checkmark:after {
     left: 9px;
@@ -75,7 +78,7 @@ input[type=text],input[type=checkbox] select {
   width: 20%;
 background-color: #4CAF50;
   /* align-items: center; */
-  
+
 }
 .back{
   width: 20%;
@@ -106,14 +109,51 @@ background-color: lightgray;
 .msg_success{
   color: #45a049;
   font-size: xx-large;
-font-weight: bold;}
+  font-weight: bold;}
 .msg_error{
   color: red;
   font-size: xx-large;
 font-weight: bold;}
 .msg_firstName,.msg_lastName,.msg_title{
   color: red;
-  font-size: xx-large;
-font-weight: bold;
-
+  font-size: 15px;
 }
+
+.fail{
+  padding-top: 2px;
+  color : red;
+  font-size: 43px
+}
+
+.success{
+    padding-top: 2px;
+    color: green;
+    font-size: 43px;
+}
+
+
+.notify{
+  font-family: "montserrat-bold", sans-serif;
+  position:fixed;
+  top: 35%;
+  width:100%;
+  height:auto;
+  box-sizing:border-box;
+  color:white;
+  text-align:center;
+  padding: 20px!important;
+  background:rgba(0, 0, 0, 1)!important;
+  z-index: 1;
+  font-weight: bolder;
+  overflow:hidden;
+  transition:height .2s;
+}
+
+#notifyType{
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 20px;
+  padding-top: 20px;
+}
+
+

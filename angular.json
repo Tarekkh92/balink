@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "balinkhw"
+  "defaultProject": "balinkhw",
+  "cli": {
+    "analytics": "7232a09d-27df-4fe0-817c-e43b5a85ffb8"
+  }
 }
