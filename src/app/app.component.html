@@ -1,3 +1,4 @@
+<div class="page">
 <div class="row notifyType" style="color: white; background-color: #171111c9;" *ngIf="showNotification">
   <i [ngClass]="error? 'fa fa-times iconToggle fail' : 'fa fa-check-circle iconToggle success'"></i>
   <span class="col-eleven tab-full" *ngIf="error"  id="notifyType">Some Error Found.
@@ -38,8 +39,14 @@
     <form [formGroup]="secondFormGroup">
       <div class="address">
         <label for="CountryName">Country Name</label>
-        <input type="text" id="CountryName" formControlName="country" name="CountryName"
-          placeholder="Your Country Name .." [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }">
+        <!-- <input type="text" id="CountryName" formControlName="country" name="CountryName"
+          placeholder="Your Country Name .." [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }"> -->
+          <select   id="CountryName" formControlName="country" name="CountryName" [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }" >
+          
+            <option selected disabled >Choose Country...</option>
+            <option *ngFor="let c of countries  ">{{c.name }}</option>
+        </select>
+          <!-- <option disabled>Select Country</option> -->
         <p *ngIf="isSubmitted2 && formControls2.country.errors" class="msg_firstName">Country name is missing !</p>
         <label for="cityName">City Name</label>
         <input type="text" id="cityName" formControlName="city" name="cityName" placeholder="Your City Name.."
@@ -97,3 +104,4 @@
   </mat-step>
 
 </mat-horizontal-stepper>
+</div>

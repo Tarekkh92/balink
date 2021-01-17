@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomersService } from '../shared/services/customer.service';
+import { CountriesService } from '../shared/services/countries.service';
 import { Customer } from '../shared/models/customer.model';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
@@ -35,27 +36,30 @@ export class AppComponent implements OnInit {
   thirdFormGroup: FormGroup;
   isLinear = true;
   public customer: any = {};
+  public countries: any = {};
 
-
-  constructor(private _formBuilder: FormBuilder, private ps: CustomersService) {
+  constructor(private _formBuilder: FormBuilder, private ps: CustomersService,private cs:CountriesService) {
     this.firstFormGroup = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       title: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      country: ['', Validators.required],
+       country: ['', Validators.required],
       city: ['', Validators.required],
       street: ['', Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
-      email: ['', [Validators.required,Validators.pattern('^[\w.]+@[\w.]+[\w.]{2,}$')]],
-      phone: ['', [Validators.required, Validators.pattern('^05[023458]-?[1-9]\d{6}$')]],
+      email: ['', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")] ],
+      phone: ['', Validators.required],
       option: ['', Validators.required]
+      // "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+      // '^-?[0-9]\\d*(\\.\\d{1,2})?$'
     });
   }
 
   ngOnInit() {
+    this.initCountries();
     this.ps.getCustomersAsync().subscribe(res => {
       console.log(res);
     });
@@ -88,7 +92,20 @@ export class AppComponent implements OnInit {
   get formControls3() {
     return this.thirdFormGroup.controls;
   }
-
+  public initCountries(){
+ 
+  
+    this.cs.getAllCountries().
+      subscribe(countries =>{this.countries = countries;
+        console.log(this.countries)
+      
+      
+      } );
+         //console.log(countries.name);
+         
+       
+       
+  }
 
   public submitForm() {
     console.log(this.thirdFormGroup)
@@ -126,6 +143,7 @@ export class AppComponent implements OnInit {
       }
       this.ps.addCustomer(request).subscribe(res => {
         this.initialize();
+        this.isSubmitted3 =false;
         this.customer = {};
         this.msgError = '';
         this.showNotification = true;
