@@ -58,7 +58,7 @@
             <!-- <option selected selected >{{'chooseCountry' | translate}}</option> -->
             <!-- <option value="c.name" *ngFor="let c of countries  ">{{c.name }}</option>
         </select> -->
-        <select id="CountryName"  name="select1" class="form-control" placeholder="{{'chooseCountry' | translate}}"
+        <select id="CountryName"  name="select1" class="form-control"
             formControlName="country">
                   <option disabled >{{'chooseCountry' | translate}}</option>
                   <option value={{country.name}} *ngFor="let country of countries">{{country.name}}</option>
