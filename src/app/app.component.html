@@ -1,4 +1,11 @@
-
+<div class="row notifyType" style="color: white; background-color: lightgray;" *ngIf="showNotification">
+  <i [ngClass]="error? 'fa fa-times iconToggle fail' : 'fa fa-check-circle iconToggle success'"></i>
+  <span class="col-eleven tab-full" *ngIf="error"  id="notifyType">{{ 'error' | translate  }}
+  </span>
+  <span class="col-eleven tab-full" *ngIf="!error"  id="notifyType">{{ 'success' | translate  }}
+  </span>
+</div>
+<br>
 <div class="langu">
   <a (click)="switchLang('en')" title="hebrew" style="cursor: pointer;" *ngIf="lang=='he'">{{ 'English' | translate  }}</a>
   &nbsp;
@@ -7,15 +14,6 @@
 
 </div>
 <div class="page">
-<div class="row notifyType" style="color: white; background-color: #171111c9;" *ngIf="showNotification">
-  <i [ngClass]="error? 'fa fa-times iconToggle fail' : 'fa fa-check-circle iconToggle success'"></i>
-  <span class="col-eleven tab-full" *ngIf="error"  id="notifyType">{{ 'error' | translate  }}
-  </span>
-  <span class="col-eleven tab-full" *ngIf="!error"  id="notifyType">{{ 'success' | translate  }}
-  </span>
-</div>
-<br>
-
 
 <h1> {{ 'welcomeMessage' | translate  }}  </h1>
 
@@ -50,20 +48,14 @@
     <form [formGroup]="secondFormGroup">
       <div class="address">
         <label for="CountryName">{{'countryName' | translate}}</label>
-        <!-- <input type="text" id="CountryName" formControlName="country" name="CountryName"
-          placeholder="Your Country Name .." [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }"> -->
-
-          <!-- <select   id="CountryName" formControlName="country" name="CountryName" [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }" > -->
-
-            <!-- <option selected selected >{{'chooseCountry' | translate}}</option> -->
-            <!-- <option value="c.name" *ngFor="let c of countries  ">{{c.name }}</option>
-        </select> -->
+    
+    
         <select id="CountryName"  name="select1" class="form-control"
             formControlName="country">
                   <option disabled >{{'chooseCountry' | translate}}</option>
                   <option value={{country.name}} *ngFor="let country of countries">{{country.name}}</option>
           </select>
-          <!-- <option disabled>Select Country</option> -->
+          
         <p *ngIf="isSubmitted2 && formControls2.country.errors" class="msg_firstName">{{'countryMissing' | translate}} !</p>
         <label for="cityName">{{'cityName' | translate}} </label>
         <input type="text" id="cityName" formControlName="city" name="cityName" placeholder="{{'yourCity' | translate}}"
@@ -100,7 +92,7 @@
         <p *ngIf="isSubmitted3 && formControls3.phone.errors?.pattern" class="msg_firstName">{{'invalidPhone' | translate}}</p>
         <label class="container">{{'terms' | translate}}
           <input type="checkbox" >
-          <!-- <span class="checkmark"></span> -->
+          
         </label>
 
         <input type="submit" value="{{'submit' | translate}}" (click)="isSubmitted3=true;submitForm()">
@@ -110,8 +102,7 @@
           <button mat-button matStepperPrevious class="back"> {{'back' | translate}}</button>
         </div>
 
-        <!-- <p class="msg_success">{{ msgSuccess }}</p>
-        <p class="msg_error">{{ msgError }}</p> -->
+     
 
       </div>
     </form>
@@ -122,3 +113,4 @@
 
 </mat-horizontal-stepper>
 </div>
+<p class="footer">All rights reserved &copy;</p>

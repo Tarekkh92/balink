@@ -8,10 +8,9 @@ const countryData = require("./countries.json")
 var corsOptions = {};
 
 app.use(cors(corsOptions));
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// mongodb+srv://tk9292:a1b2c3@cluster0.tvfxm.mongodb.net/balink?retryWrites=true&w=majority
+
 mongoose.connect("mongodb+srv://tk9292:a1b2c3@cluster0.tvfxm.mongodb.net/balink?retryWrites=true&w=majority", function (err, database) {
     if (err) {
         console.log("Error: " + err);
@@ -49,18 +48,7 @@ app.post("/customers", function (request, response) {
     });
 });
 
-app.get("/customers", function (request, response) {
-    Customer.find({}, function (err, customers) {
-        if (err) {
-            console.log("Error: " + err);
-            response.status(500);
-            response.send(err);
-        }
-        else {
-            response.send(customers); // Default Status = 200
-        }
-    });
-});
+
 
 app.get("/countries", function (request, response) {
     response.send(countryData); // Default Status = 200
