@@ -11,13 +11,13 @@ export class CountriesService {
   private countries :Country[]=[];
   constructor(private http: HttpClient) {}
 
-  getAllCountries() {
+  // getAllCountries() {
 
-  
-    return  this.http.get<Country[]>(`${this.api}/all`).pipe(map((countries :Country[]) => countries));;
 
-    
-  }
+  //   return  this.http.get<Country[]>(`${this.api}/all`).pipe(map((countries :Country[]) => countries));;
 
-  
+
+  // }
+
+
 }

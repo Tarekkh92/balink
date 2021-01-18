@@ -1,9 +1,13 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const cors = require("cors");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+const countryData = require("./countries.json")
+var corsOptions = {};
 
+app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,7 +31,7 @@ var Customer = mongoose.model("Customer", {
     email: String,
     phone: String,
     option: Boolean,
-  
+
 });
 
 app.post("/customers", function (request, response) {
@@ -58,6 +62,10 @@ app.get("/customers", function (request, response) {
     });
 });
 
+app.get("/countries", function (request, response) {
+    response.send(countryData); // Default Status = 200
+});
+
 
 app.use(express.static(__dirname + '/dist/balinkhw'));
 app.get('/*', function(req,res) {
@@ -69,4 +77,4 @@ app.listen(process.env.PORT || 8080,function(){
 
 
 
-//model 
+//model

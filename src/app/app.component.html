@@ -1,10 +1,10 @@
 
 <div class="langu">
-  <a (click)="switchLang('en')" title="hebrew" >{{ 'English' | translate  }}</a>
+  <a (click)="switchLang('en')" title="hebrew" style="cursor: pointer;" *ngIf="lang=='he'">{{ 'English' | translate  }}</a>
   &nbsp;
-  <a (click)="switchLang('he')" title="hebrew" >{{ 'Hebrew' | translate  }}</a>
+  <a (click)="switchLang('he')" title="hebrew" style="cursor: pointer;" *ngIf="lang=='en'">{{ 'Hebrew' | translate  }}</a>
 
- 
+
 </div>
 <div class="page">
 <div class="row notifyType" style="color: white; background-color: #171111c9;" *ngIf="showNotification">
@@ -52,13 +52,17 @@
         <label for="CountryName">{{'countryName' | translate}}</label>
         <!-- <input type="text" id="CountryName" formControlName="country" name="CountryName"
           placeholder="Your Country Name .." [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }"> -->
-         
-          <select   id="CountryName" formControlName="country" name="CountryName" [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }" >
-          
-            <option selected selected >{{'chooseCountry' | translate}}</option>
-            <option *ngFor="let c of countries  ">{{c.name }}</option>
-        </select>
-       
+
+          <!-- <select   id="CountryName" formControlName="country" name="CountryName" [ngClass]="{ 'has-error': isSubmitted2 && formControls2.country.errors }" > -->
+
+            <!-- <option selected selected >{{'chooseCountry' | translate}}</option> -->
+            <!-- <option value="c.name" *ngFor="let c of countries  ">{{c.name }}</option>
+        </select> -->
+        <select id="CountryName"  name="select1" class="form-control" placeholder="{{'chooseCountry' | translate}}"
+            formControlName="country">
+                  <option disabled >{{'chooseCountry' | translate}}</option>
+                  <option value={{country.name}} *ngFor="let country of countries">{{country.name}}</option>
+          </select>
           <!-- <option disabled>Select Country</option> -->
         <p *ngIf="isSubmitted2 && formControls2.country.errors" class="msg_firstName">{{'countryMissing' | translate}} !</p>
         <label for="cityName">{{'cityName' | translate}} </label>

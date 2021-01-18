@@ -37,15 +37,15 @@ export class AppComponent implements OnInit {
   thirdFormGroup: FormGroup;
   isLinear = true;
   public customer: any = {};
-  public countries: any = {};
-  public lang: any;
+  public countries: any = [];
+  public lang: any = 'en';
 
   constructor(private _formBuilder: FormBuilder, private ps: CustomersService,private cs:CountriesService, public translate: TranslateService) {
     this.firstFormGroup = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       title: ['', Validators.required],
-      
+
     });
 
     this.secondFormGroup = this._formBuilder.group({
@@ -112,18 +112,23 @@ export class AppComponent implements OnInit {
     return this.thirdFormGroup.controls;
   }
   public initCountries(){
- 
-  
-    this.cs.getAllCountries().
-      subscribe(countries =>{this.countries = countries;
-        //console.log(this.countries)
-      
-      
+
+
+    // this.cs.getAllCountries().
+    //   subscribe(countries =>{this.countries = countries;
+    //     //console.log(this.countries)
+
+    //   } );
+
+      this.ps.getCountryList().
+        subscribe(countries =>{
+          this.countries = countries;
       } );
+
          //console.log(countries.name);
-         
-       
-       
+
+
+
   }
 
   public submitForm() {

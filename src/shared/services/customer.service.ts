@@ -9,12 +9,12 @@ import {environment} from '../../environments/environment';
     providedIn:'root'
 })
 export class CustomersService {
-    
+
     private customers :Customer[]=[];
     private apiurl:string = environment.apiUrl;
     constructor(private http:HttpClient){}
 
- 
+
 
     public getCustomersAsync() :Observable<Customer[]>  {
 
@@ -22,12 +22,16 @@ export class CustomersService {
             map((customers :Customer[]) => customers)
         );
     }
-    
+
+    public getCountryList() {
+      return this.http.get(`${this.apiurl}/countries`);
+    }
+
 
     public addCustomer(data: any) {
         return this.http.post(`${this.apiurl}/customers`, data);
     }
-    
+
 
 
 }
